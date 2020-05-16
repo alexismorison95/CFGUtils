@@ -1,45 +1,37 @@
 import nltk
-import os
 from nltk.tree import Tree
 from nltk.draw import TreeView
-from PIL import Image
-import io
 
-grammar2 = nltk.CFG.fromstring("""
-    S -> '0' C | '1' B
-    B -> '0' D | '1' S | 'e'
-    C -> '0' S | '1' D
-    D -> '0' B | '1' C
-""")
+from gramaticas import grammar1
 
-grammar1 = nltk.CFG.fromstring("""
-    S -> '(' L ')' | 'a'
-    L -> L ',' S | S
-""")
 
-def split2(word): 
+def splitCadena(word): 
     return [char for char in word]  
 
-def parse(sent):
+def gramaticaToArbol(cadena, gramatica):
 
     #Returns nltk.Tree.Tree format output
     a = []  
-    parser = nltk.ChartParser(grammar1)
 
-    for tree in parser.parse(sent):
+    parser = nltk.ChartParser(gramatica)
+
+    for tree in parser.parse(cadena):
         a.append(tree)
+
     return(a[0]) 
 
-sentence = split2('(a,(a,(a),(a,a)))')
+cadena = splitCadena('(a,(a,(a),(a,a)))')
 
 #Gives output as structured tree   
-print(parse(sentence))
+arbol = gramaticaToArbol(cadena, grammar1)
+
+print(arbol)
 
 #Gives tree diagrem in tkinter window
-parse(sentence).draw()
+arbol.draw()
 
-t = Tree.fromstring(str(parse(sentence)))
+t = Tree.fromstring(str(arbol))
 
 TreeView(t)._cframe.print_to_file('./res/output.ps')
 
-os.system('convert output.ps output.png')
+# Convertir el output.ps a .png
