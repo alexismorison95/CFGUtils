@@ -2,7 +2,7 @@ import nltk
 from nltk.tree import Tree
 from nltk.draw import TreeView
 
-from gramaticas import grammar1
+from gramaticas import grammar2, grammar1
 
 
 def splitCadena(word): 
@@ -20,16 +20,18 @@ def gramaticaToArbol(cadena, gramatica):
 
     return(a[0]) 
 
-cadena = splitCadena('(a,(a,(a),(a,a)))')
+#cadena = splitCadena('(a,(a,(a),(a,a)))')
+cadena = splitCadena('001e')
 
 #Gives output as structured tree   
-arbol = gramaticaToArbol(cadena, grammar1)
+arbol = gramaticaToArbol(cadena, grammar2)
 
 print(arbol)
 
 #Gives tree diagrem in tkinter window
 arbol.draw()
 
+# Bug si hay parentesis
 t = Tree.fromstring(str(arbol))
 
 TreeView(t)._cframe.print_to_file('./res/output.ps')
