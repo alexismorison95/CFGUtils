@@ -7,7 +7,9 @@ from gramaticas import grammar2, grammar1
 
 
 def splitCadena(word): 
+
     return [char for char in word]  
+
 
 def gramaticaToArbol(cadena, gramatica):
 
@@ -20,28 +22,34 @@ def gramaticaToArbol(cadena, gramatica):
 
     return(a[0]) 
 
-cadenaInput = input("Ingrese cadena a validar: ")
 
-try:
-    cadena = splitCadena(cadenaInput)
+def main():
 
-    arbol = gramaticaToArbol(cadena, grammar2)
+    cadenaInput = input("Ingrese cadena a validar: ")
 
-    print(arbol)
+    try:
+        cadena = splitCadena(cadenaInput)
 
-    arbol.draw()
+        arbol = gramaticaToArbol(cadena, grammar2)
 
-    # Bug si hay parentesis en los terminales de la gramatica
-    t = Tree.fromstring(str(arbol))
+        print(arbol)
+        
+        arbol.draw()
 
-    TreeView(t)._cframe.print_to_file('./res/output.ps')
+        # Bug si hay parentesis en los terminales de la gramatica
+        t = Tree.fromstring(str(arbol))
 
-    # Convertir el output.ps a .png
+        TreeView(t)._cframe.print_to_file('./res/output.ps')
 
-except IndexError as error:
-    
-    print('La gramatica no genera la cadena ' + cadenaInput)
+        # Convertir el output.ps a .png
 
-except Exception as ex:
+    except IndexError as error:
+        
+        print('La gramatica no genera la cadena ' + cadenaInput)
 
-    print(ex)
+    except Exception as ex:
+
+        print(ex)
+
+if __name__ == '__main__':
+    main()
