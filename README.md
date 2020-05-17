@@ -43,7 +43,7 @@ Cuando se ejecuta el programa se guarda en la carpeta **/res** un archivo llamad
 
 Luego debe convertir el archivo **.ps** a **.png** con algun convertidor de archivos para obtener el siguiente resultado:
 
-![Resultado.png](https://raw.githubusercontent.com/alexismorison95/CFGUtils/master/res/output.png) 
+![Resultado.png](https://raw.githubusercontent.com/alexismorison95/CFGUtils/master/imagenes/output.png) 
 
 -----
 
