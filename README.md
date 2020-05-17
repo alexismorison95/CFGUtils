@@ -28,13 +28,13 @@ miGramatica = nltk.CFG.fromstring(
 # Ejecución
 
 Cuando se ejecuta el archivo main.py se le pide que ingrese una cadena a validar:
-```
+```python
 cadena = input("Ingrese cadena a validar: ")
 ```
 Por ejemplo la cadena: **001e**
 
 Luego se llama a la función gramaticaToArbol donde se le pasa como parámetros la cadena y la gramática importada:
-```
+```python
 arbol = gramaticaToArbol(cadena, miGramatica)
 ```
 Luego se genera el arbol en una pantalla de Tkinter donde puede ver el resultado.

@@ -11,7 +11,6 @@ def splitCadena(word):
 
 def gramaticaToArbol(cadena, gramatica):
 
-    #Returns nltk.Tree.Tree format output
     a = []  
 
     parser = nltk.ChartParser(gramatica)
@@ -21,23 +20,28 @@ def gramaticaToArbol(cadena, gramatica):
 
     return(a[0]) 
 
-#cadena = splitCadena('(a,(a,(a),(a,a)))')
-#cadena = splitCadena('001e')
-cadena = input("Ingrese cadena a validar: ")
+cadenaInput = input("Ingrese cadena a validar: ")
 
-cadena = splitCadena(cadena)
+try:
+    cadena = splitCadena(cadenaInput)
 
-#Gives output as structured tree   
-arbol = gramaticaToArbol(cadena, grammar2)
+    arbol = gramaticaToArbol(cadena, grammar2)
 
-print(arbol)
+    print(arbol)
 
-#Gives tree diagrem in tkinter window
-arbol.draw()
+    arbol.draw()
 
-# Bug si hay parentesis en los simbolos de la gramatica
-t = Tree.fromstring(str(arbol))
+    # Bug si hay parentesis en los terminales de la gramatica
+    t = Tree.fromstring(str(arbol))
 
-TreeView(t)._cframe.print_to_file('./res/output.ps')
+    TreeView(t)._cframe.print_to_file('./res/output.ps')
 
-# Convertir el output.ps a .png
+    # Convertir el output.ps a .png
+
+except IndexError as error:
+    
+    print('La gramatica no genera la cadena ' + cadenaInput)
+
+except Exception as ex:
+
+    print(ex)
