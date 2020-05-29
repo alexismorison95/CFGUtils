@@ -2,9 +2,10 @@ import nltk
 from nltk.tree import Tree
 from nltk.draw import TreeView
 
+from PIL import Image
+
 from gramaticas import grammar1, grammar2, grammar3, grammar4, grammar5, grammar6
 
-from PIL import Image
 
 def splitCadena(word):
     """
@@ -71,7 +72,7 @@ def generarArbol(cadenaInput, gramatica, funcionSplit):
     new_size = (int(pic.size[0] * ratio), int(pic.size[1] * ratio))
 
     # Resize to fit the target size
-    pic = pic.resize(new_size, Image.ANTIALIAS)
+    #pic = pic.resize(new_size, Image.ANTIALIAS)
 
     # Save to PNG
     pic.save("./res/image.png")
