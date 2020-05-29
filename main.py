@@ -2,8 +2,9 @@ import nltk
 from nltk.tree import Tree
 from nltk.draw import TreeView
 
-from gramaticas import grammar1, grammar2, grammar3
+from gramaticas import grammar1, grammar2, grammar3, grammar4, grammar5, grammar6
 
+from PIL import Image
 
 def splitCadena(word):
     """
@@ -38,7 +39,7 @@ def gramaticaToArbol(cadena, gramatica):
     for tree in parser.parse(cadena):
         a.append(tree)
 
-    return(a[0]) 
+    return a[0]
 
 
 def generarArbol(cadenaInput, gramatica, funcionSplit):
@@ -56,16 +57,37 @@ def generarArbol(cadenaInput, gramatica, funcionSplit):
 
     TreeView(t)._cframe.print_to_file('./res/output.ps')
 
+    TARGET_BOUNDS = (1024, 1024)
+
+    pic = Image.open('./res/output.ps')
+    pic.load(scale=10)
+
+    if pic.mode in ('P', '1'):
+        pic = pic.convert("RGB")
+
+    # Calculate the new size, preserving the aspect ratio
+    ratio = min(TARGET_BOUNDS[0] / pic.size[0],
+                TARGET_BOUNDS[1] / pic.size[1])
+    new_size = (int(pic.size[0] * ratio), int(pic.size[1] * ratio))
+
+    # Resize to fit the target size
+    pic = pic.resize(new_size, Image.ANTIALIAS)
+
+    # Save to PNG
+    pic.save("./res/image.png")
+
 
 def main():
 
+    miGramatica = grammar5
+
     print("La gramatica seleccionada es:")
-    print(grammar3[1])
+    print(miGramatica[1])
 
     cadenaInput = input("Ingrese cadena a validar: ")
 
     try:
-        generarArbol(cadenaInput, grammar3[0], splitCadena)
+        generarArbol(cadenaInput, miGramatica[0], splitCadena)
 
     except IndexError:
 
@@ -74,7 +96,7 @@ def main():
     except:
 
         try:
-            generarArbol(cadenaInput, grammar3[0], splitCadena2)
+            generarArbol(cadenaInput, miGramatica[0], splitCadena2)
 
         except IndexError:
 
