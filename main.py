@@ -6,6 +6,7 @@ import uuid
 from gramaticas import lista_gramaticas
 
 
+
 def split_cadena(word):
     """
     Funcion split simple para cuando la gramatica posee variables y terminales formados por un solo simbolo.\n
@@ -56,7 +57,7 @@ def generar_png(file_name):
     new_size = (int(pic.size[0] * ratio), int(pic.size[1] * ratio))
 
     # Resize to fit the target size
-    pic = pic.resize(new_size, Image.ANTIALIAS)
+    #pic = pic.resize(new_size, Image.ANTIALIAS)
 
     # Save to PNG
     pic.save("./res/{}.png".format(file_name))
