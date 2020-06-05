@@ -7,7 +7,7 @@ g1 = """
     S -> '(' L ')' | 'a'
     L -> L ',' S | S
     """
-    
+
 grammar1 = [nltk.CFG.fromstring(g1), g1]
 
 ############################################
@@ -52,7 +52,6 @@ g4 = """
 
 grammar4 = [nltk.CFG.fromstring(g4), g4]
 
-
 ############################################
 
 g5 = """
@@ -91,3 +90,14 @@ g6 = """
     """
 
 grammar6 = [nltk.CFG.fromstring(g6), g6]
+
+g7 = """
+    S ->  S 'a' S  |   T
+	T ->  'b' T | 'b' | S
+    """
+
+grammar7 = [nltk.CFG.fromstring(g7), g7]
+
+############################################
+
+lista_gramaticas = [grammar1, grammar2, grammar3, grammar4, grammar5, grammar6, grammar7]
